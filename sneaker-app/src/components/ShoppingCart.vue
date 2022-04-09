@@ -3,8 +3,10 @@
   <div class="item-cart" v-for="sneaker in $store.state.cart" v-bind:key="sneaker.subname">
      <h2>{{sneaker.name}}</h2>
         <h3>{{sneaker.subname}}</h3>
-        <img v-on:click="cyclePic(sneaker)" id= "sneakerPic" v-bind:src=
-        "sneaker.images" alt="">
+        <div>
+        <img :src="sneaker.images" v-on:click="cyclePic(sneaker)" id= "sneakerPic" 
+         >
+         </div>
         <h4>{{sneaker.price}}</h4>
   </div>
       
@@ -13,12 +15,31 @@
 
 <script>
 export default {
-  name: "shopping-cart" 
+  name: "shopping-cart",
+  props: "showCart" 
 
 }
 </script>
 
-<style>
+<style  scoped>
+
+
+.shopping-cart{ 
+  width: 30%;
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+   overflow: scroll;
+}
+
+.item-cart{
+  display: block;
+  size: 80%;
+}
+
+#sneakerPic{
+  width: 100%;
+}
 
 
 

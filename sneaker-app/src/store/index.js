@@ -7,7 +7,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     index: 0,
-    cart:[],
+
+    cart: [],
+
     sneakers: [
       {
         name: "Jordan 4 Retro",
@@ -17,6 +19,7 @@ export default new Vuex.Store({
         ]
         ,
         price: "$1105",
+        availableSizes: [7, 8, 9, 10.5, 12, 13, ],
         inCart: false
       },
       {
@@ -26,6 +29,7 @@ export default new Vuex.Store({
           "https://media.restocks.net/products/DC3481-900/air-jordan-1-retro-high-j-balvin-3-1000.png"
         ],
         price: "$572",
+        availableSizes: [7, 8, 9, 10.5, 12, 13, ],
         inCart: false
       },
       {
@@ -34,6 +38,7 @@ export default new Vuex.Store({
         images: [
           "https://www.universekickz.com/wp-content/uploads/2021/02/img22.jpg"],
         price: "$396",
+        availableSizes: [7, 8, 10.5, 12, 13, ],
         inCart: false
       },
       {
@@ -42,28 +47,35 @@ export default new Vuex.Store({
         images: ["https://mag.stadiumgoods.com/cdn-cgi/image/fit%3Dcontain%2Cformat%3Dauto%2Cwidth%3D720/media/catalog/product/C/T/CT8532-400_2_1.png",
         ],
         price: "$235",
+        availableSizes: [7, 8, 9, 10.5, 12.5, 13, ],
         inCart: false
       },
       {
+
         name: "Jordan 4 Retro",
         subname: "Military Blue",
         images: [
           "http://jordansdaily.com/wp-content/uploads/2016/06/air-jordan-4-military-blue-4.png"],
         price: "$850",
+        availableSizes: [7, 8, 9, 11.5, 12, 13, ],
         inCart: false
       },
       {
+     
         name: "Jordan 4 Retro",
         subname: "Crimson",
         images: ["https://houseofheat.co/app/uploads/2021/02/air-jordan-4-red-thunder-ct8527-016-release-date.jpg"],
         price: "$330",
+        availableSizes: [7, 8, 9, 10, 12, 13, ],
         inCart: false
       },
       {
+ 
         name: "Jordan 4 Retro",
         subname: "Thunder",
         images: ["https://stockx.imgix.net/Air-Jordan-4-Retro-Thunder-2012-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&q=90&dpr=2&trim=color&updated_at=1538080256"],
         price: "$330",
+        availableSizes: [7, 8, 9, 10.5, 12, 13, ],
         inCart: false
       },
 
@@ -72,29 +84,29 @@ export default new Vuex.Store({
   mutations: {
 
     ADD_TO_CART(state, sneaker) {
-      let index = state.sneakers.indexOf(sneaker.subname)
       if (sneaker.inCart === false) {
         sneaker.inCart = true;
         state.cart.push(sneaker)
+      }
+    },
 
-      }else  if (sneaker.inCart === true) {
-        state.cart.splice(index,1)
+    REMOVE_FROM_CART(state, sneaker) {
+      let index = state.sneakers.indexOf(sneaker.subname);
+      if (sneaker.inCart === true) {
+        state.cart.splice(index, 1)
         sneaker.inCart = false;
       }
-      
-    
     },
 
     CYCLE_PIC(state, sneaker) {
       let index = state.index
       index++
-      if(index === sneaker.images.length){
+      if (index === sneaker.images.length) {
         sneaker.images = sneaker.images[0]
-      }else{
-      sneaker.images = sneaker.images[index]
+      } else {
+        sneaker.images = sneaker.images[index]
       }
     }
-
   },
   actions: {
   },
